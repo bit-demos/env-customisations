@@ -17,6 +17,11 @@ function commonTransformation(
 ) {
   // add stylable support
   config.addPlugin(new StylableWebpackPlugin({ }));
+  // @ts-ignore
+  const oneOfRules = config.raw.module.rules.find(rule => !!rule.oneOf);
+  // @ts-ignore
+  const cssRule = findCssRule(oneOfRules.oneOf, `/(?<!\\.module)\\.css$/`);
+  excludeStCssFromRule(cssRule);
   return config;
 }
 
@@ -31,11 +36,6 @@ export const previewConfigTransformer: WebpackConfigTransformer = (
   context: WebpackConfigTransformContext
 ) => {
   const newConfig = commonTransformation(config, context);
-  // @ts-ignore
-  const oneOfRules = newConfig.raw.module.rules.find(rule => !!rule.oneOf);
-  // @ts-ignore
-  const cssRule = findCssRule(oneOfRules.oneOf, `/(?<!\\.module)\\.css$/`);
-  excludeStCssFromRule(cssRule);
   return newConfig;
 }
 
@@ -50,8 +50,6 @@ export const devServerConfigTransformer: WebpackConfigTransformer = (
   context: WebpackConfigTransformContext
 ) => {
   const newConfig = commonTransformation(config, context);
-  const cssRule = findCssRule(newConfig.raw.module.rules);
-  excludeStCssFromRule(cssRule, /\.(module|st)\.css$/);
   return newConfig;
 };
 
