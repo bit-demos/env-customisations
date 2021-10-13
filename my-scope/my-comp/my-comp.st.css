@@ -4,12 +4,19 @@
  * in this case, button.tsx
 */
 .root {
-  background: #b0e0e6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .icon {
   /* set image height and display: block */
+  display: block;
   background-image: url('./assets/btnIcon.svg');
+  background-repeat: no-repeat;
+  height: 15px;
+  width: 15px;
+  padding-right: 3px;
 }
 
 .label {
