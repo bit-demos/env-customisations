@@ -32,7 +32,7 @@ export class MyOrgEnvMain {
   }
 
   /**
-   * create a new composition of the node environment.
+   * create a new composition of the MyOrgEnv environment.
    */
   compose(transformers: EnvTransformer[], targetEnv: Environment = {}) {
     return this.envs.compose(
