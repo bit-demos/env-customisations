@@ -1,0 +1,15 @@
+---
+labels: ['react', 'typescript', 'my-org', 'webpack']
+description: 'Bit env containing a webpack override example'
+---
+
+This component is a bit env which demonstrates how to override webpack config with a custom bit env.  
+
+We have called this `org` env as it is configured in a way as to enable further overriding of webpack and typescript (you can add other override APIs too) by more 
+specific team-level bit environments across an organisation. E.g. in this example scope, the `my-team-env` component adds a more concrete config via overriding the ts config
+to add stylable support for a team which uses that for their css.
+
+This env is a react extension (extends bit's core (React env)[https://bit.dev/teambit/react/react]), with a webpack override transformer 
+which create a new, merged config with the base webpack config of the base React env.
+
+In this example we override the react-dom instance with @hot-loader/react-dom as an example of a webpack config override.

@@ -2,7 +2,7 @@ import { MainRuntime } from '@teambit/cli';
 import ReactAspect, { ReactMain, UseWebpackModifiers } from "@teambit/react";
 import EnvsAspect, {Environment, EnvsMain, EnvTransformer} from '@teambit/envs';
 import { MyOrgEnvAspect } from './my-org-env.aspect';
-import {previewConfigTransformer, devServerConfigTransformer} from './webpack/webpack-transformers'
+import {previewConfigTransformer, devServerConfigTransformer} from './webpack/webpack-transformers';
 
 type MyOrgEnvDeps = [
   EnvsMain,
@@ -21,15 +21,20 @@ export class MyOrgEnvMain {
 
   useWebpack(modifiers?: UseWebpackModifiers) {
     const mergedModifiers: UseWebpackModifiers = {
-      previewConfig: (modifiers.previewConfig ?? []).concat(
+      previewConfig: (modifiers?.previewConfig ?? []).concat(
         previewConfigTransformer
       ),
-      devServerConfig: (modifiers.devServerConfig ?? []).concat(
+      devServerConfig: (modifiers?.devServerConfig ?? []).concat(
         devServerConfigTransformer
       ),
     };
     return this.react.useWebpack(mergedModifiers);
   }
+
+  /**
+   * Enable overriding of this env's tsconfig
+   */
+  useTypescript = this.react.useTypescript.bind(this.react);
 
   /**
    * create a new composition of the MyOrgEnv environment.
@@ -46,7 +51,10 @@ export class MyOrgEnvMain {
       previewConfig: [previewConfigTransformer],
       devServerConfig: [devServerConfigTransformer],
     };
-    const myEnv = react.compose([react.useWebpack(webpackModifiers)]);
+
+    const myEnv = react.compose([
+      react.useWebpack(webpackModifiers)
+    ]);
     envs.registerEnv(myEnv);
     return new MyOrgEnvMain(react, envs, myEnv);
   }

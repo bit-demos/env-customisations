@@ -1,12 +1,16 @@
 import { MainRuntime } from '@teambit/cli';
-import ReactAspect, { ReactMain, UseWebpackModifiers } from "@teambit/react";
-import MyOrgEnvAspect, { MyOrgEnvMain } from "@my-scope/my-org-env";
+import { UseWebpackModifiers, UseTypescriptModifiers } from "@teambit/react";
+import MyOrgEnvAspect, { MyOrgEnvMain } from "@learn-bit-react/config.webpack.my-org-env";
 import EnvsAspect, { Environment, EnvsMain } from "@teambit/envs";
 import { MyTeamEnvAspect } from "./my-team-env.aspect";
 import {
   previewConfigTransformer,
   devServerConfigTransformer,
 } from "./webpack/webpack-transformers";
+import { 
+  devConfigTransformer, 
+  buildConfigTransformer 
+} from './typescript/typescript-transformer';
 
 type MyOrgEnvDeps = [EnvsMain, MyOrgEnvMain];
 
@@ -20,8 +24,17 @@ export class MyTeamEnvMain {
       previewConfig: [previewConfigTransformer],
       devServerConfig: [devServerConfigTransformer],
     };
+    const tsModifiers: UseTypescriptModifiers = {
+      devConfig: [devConfigTransformer],
+      buildConfig: [buildConfigTransformer],
+    };
+
     const envWebpackTransform = myOrgEnv.useWebpack(webpackModifiers);
-    const myEnv = myOrgEnv.compose([envWebpackTransform]);
+    const envTsTransform = myOrgEnv.useTypescript(tsModifiers);
+    const myEnv = myOrgEnv.compose([
+      envWebpackTransform,
+      envTsTransform
+    ]);
     envs.registerEnv(myEnv);
     return new MyTeamEnvMain(myEnv);
   }

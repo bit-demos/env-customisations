@@ -9,10 +9,10 @@ export type MyCompProps = {
    * a text to be rendered in the component.
    */
   text: string,
-  className: string
+  className?: string
 };
 
-export function MyComp({ text, className }: MyCompProps) {
+export function MyComp({ text, className = "" }: MyCompProps) {
   return (
     <button className={style(classes.root, className) } >
         <span className={classes.icon} />
