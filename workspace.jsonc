@@ -26,7 +26,7 @@
     /**
      * default scope for all components in workspace.
      **/
-    "defaultScope": "learn-bit-react.config"
+    "defaultScope": "learn-bit-react.configs"
   },
   /**
    * main configuration for component dependency resolution.
@@ -64,7 +64,7 @@
    **/
   "teambit.workspace/variants": {
     "my-scope/components": {
-      "learn-bit-react.config/typescript/my-team-env": {}
+      "learn-bit-react.configs/typescript/my-team-env": {}
     },
     "my-scope/extensions": {
       "teambit.harmony/aspect": {}
