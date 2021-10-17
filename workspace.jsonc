@@ -26,7 +26,7 @@
     /**
      * default scope for all components in workspace.
      **/
-    "defaultScope": "my-scope"
+    "defaultScope": "learn-bit-react.config"
   },
   /**
    * main configuration for component dependency resolution.
@@ -40,6 +40,7 @@
       "dependencies": {
         "@hot-loader/react-dom": "17.0.1",
         "@stylable/core": "4.1.1",
+        "@stylable/runtime": "4.7.2",
         "@stylable/webpack-plugin": "4.1.1",
         "@testing-library/react": "11.2.6",
         "postcss": "8.2.13",
@@ -52,7 +53,9 @@
     "devFilePatterns": [
       "**/*.spec.ts"
     ],
-    "strictPeerDependencies": true
+    "strictPeerDependencies": true,
+    "installFromBitDevRegistry": true,
+    "savePrefix": ""
   },
   /**
    * workspace variants allow to set different subsets of configuration for components in your workspace.
@@ -60,19 +63,10 @@
    * new set of dependencies.
    **/
   "teambit.workspace/variants": {
-    /**
-     * "*" is a special rule which applied on all components in the workspace.
-     **/
-    "*": {
-      /**
-       * uncomment to apply the react environment on all components.
-       **/
-      // "teambit.react/react": { }
+    "my-scope/components": {
+      "learn-bit-react.config/typescript/my-team-env": {}
     },
-    "my-scope/my-comp": {
-      "my-scope/my-team-env": {}
-    },
-    "my-scope/my-org-env, my-scope/my-team-env": {
+    "my-scope/extensions": {
       "teambit.harmony/aspect": {}
     }
   }
