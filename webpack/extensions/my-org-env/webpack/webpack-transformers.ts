@@ -16,9 +16,11 @@ function commonTransformation(
   context: WebpackConfigTransformContext
 ) {
   // Merge config with the webpack-config.js file - adding handlebars support
-  config.merge([webpackConfig]).addAliases({
-    "react-dom/test-utils": require.resolve("@hot-loader/react-dom/test-utils"),
-  });
+  config
+    .merge([webpackConfig])
+    .addAliases({
+      "react-dom/test-utils": require.resolve("@hot-loader/react-dom/test-utils"),
+    });
   return config;
 }
 

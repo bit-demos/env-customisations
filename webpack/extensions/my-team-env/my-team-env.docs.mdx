@@ -6,9 +6,9 @@ description: 'Bit env, overriding another custom env, to add webpack and typescr
 This component is a bit env which demonstrates how to further override a custom bit env. Our `my-org` env exposes an API to override both
 its webpack and typescript configurations, and we are going to override both in order to add `stylable css` support. 
 
-We have called this the `my-team-env` component as it adds a more concrete config via overriding the webpack and ts configs
+We have called this the `my-team-env` component as it takes the org-level `my-org` env and adds a more concrete config via overriding the webpack and ts configs
 to add stylable support for a specific team (or teams) which use/s that for their css.
 
 This env is a react extension which extends our own custom `my-org` env, with webpack and typescript override transformers, which together add support
-for `stylable css` for components which use this as their env.
+for `stylable css` for components which use `my-team-env` as their env.
 

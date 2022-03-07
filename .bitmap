@@ -13,19 +13,19 @@
         "scope": "",
         "version": "",
         "mainFile": "index.ts",
-        "rootDir": "my-scope/components/my-comp"
+        "rootDir": "webpack/components/my-comp"
     },
     "typescript/my-team-env": {
         "scope": "",
         "version": "",
         "mainFile": "index.ts",
-        "rootDir": "my-scope/extensions/my-team-env"
+        "rootDir": "webpack/extensions/my-team-env"
     },
     "webpack/my-org-env": {
         "scope": "",
         "version": "",
         "mainFile": "index.ts",
-        "rootDir": "my-scope/extensions/my-org-env"
+        "rootDir": "webpack/extensions/my-org-env"
     },
     "$schema-version": "14.9.0"
 }
