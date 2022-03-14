@@ -15,17 +15,29 @@
         "mainFile": "index.ts",
         "rootDir": "webpack/components/my-comp"
     },
-    "typescript/my-team-env": {
-        "scope": "",
-        "version": "",
-        "mainFile": "index.ts",
-        "rootDir": "webpack/extensions/my-team-env"
-    },
     "webpack/my-org-env": {
         "scope": "",
         "version": "",
         "mainFile": "index.ts",
-        "rootDir": "webpack/extensions/my-org-env"
+        "rootDir": "webpack/extensions/my-org-env",
+        "config": {
+            "teambit.envs/env": {},
+            "teambit.envs/envs": {
+                "env": "teambit.envs/env"
+            }
+        }
+    },
+    "webpack/my-team-env": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "webpack/extensions/my-team-env",
+        "config": {
+            "teambit.envs/env": {},
+            "teambit.envs/envs": {
+                "env": "teambit.envs/env"
+            }
+        }
     },
     "$schema-version": "14.9.0"
 }
