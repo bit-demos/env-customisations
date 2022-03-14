@@ -4,7 +4,23 @@ import {
   WebpackConfigTransformContext,
 } from "@teambit/webpack";
 import { StylableWebpackPlugin } from "@stylable/webpack-plugin";
+import { JSONPath } from "jsonpath-plus";
 
+export function stylableTransform(config: WebpackConfigMutator): void {
+  const cssRule = JSONPath<any[]>({
+    json: config.raw,
+    path: `$.module.rules..[?(@ && @.test && RegExp(@.test).test('st.css'))]`,
+  });
+
+  if (cssRule.length !== 1 ) {
+    throw new Error(
+        `failed to set stylable webpack exclusion, didnt find a css rule` + 
+        ` This probably means the webpack configuration of Bit itself has changed!`
+    );
+}
+
+  excludeStCssFromRule(cssRule[0]);
+}
 
 /**
  * Transformation to apply for both preview and dev server
@@ -18,10 +34,7 @@ function commonTransformation(
   // add stylable support
   config.addPlugin(new StylableWebpackPlugin({ }));
   // @ts-ignore
-  const oneOfRules = config.raw.module.rules.find(rule => !!rule.oneOf);
-  // @ts-ignore
-  const cssRule = findCssRule(oneOfRules.oneOf, `/(?<!\\.module)\\.css$/`);
-  excludeStCssFromRule(cssRule);
+  stylableTransform(config);
   return config;
 }
 
@@ -53,11 +66,8 @@ export const devServerConfigTransformer: WebpackConfigTransformer = (
   return newConfig;
 };
 
-function findCssRule(rules: Array<any>, testMatcher = `/\\.css$/`) {
-  return rules.find((rule) => rule.test && rule.test.toString() === testMatcher);
-}
-
 function excludeStCssFromRule(rule, excluder = /\.st\.css$/) {
+  console.log("rule in ExcludeStFromRule", JSON.stringify(rule))
   rule.exclude = excluder;
   return rule;
 }
