@@ -10,7 +10,7 @@
     /**
      * the name of the component workspace. used for development purposes.
      **/
-    "name": "my-workspace-name",
+    "name": "Environment Customisation Examples",
     /**
      * set the icon to be shown on the Bit server.
      **/
@@ -26,7 +26,7 @@
     /**
      * default scope for all components in workspace.
      **/
-    "defaultScope": "learn-harmony.env-cusomisations"
+    "defaultScope": "learn-harmony.env-customisations"
   },
   /**
    * main configuration for component dependency resolution.
@@ -42,19 +42,20 @@
         "@stylable/core": "4.1.1",
         "@stylable/runtime": "4.7.2",
         "@stylable/webpack-plugin": "4.1.1",
+        "@teambit/dependencies.modules.packages-excluder": "0.0.54",
+        "@teambit/webpack.modules.style-regexps": "0.0.132",
         "@testing-library/react": "11.2.6",
-        "postcss": "8.2.13",
+        "jsonpath-plus": "6.0.1",
+        "postcss": "8.2.13"
+      },
+      "peerDependencies": {
         "react": "17.0.2",
         "react-dom": "17.0.2"
-      },
-      "peerDependencies": {}
+      }
     },
-    "packageManagerArgs": [],
     "devFilePatterns": [
       "**/*.spec.ts"
     ],
-    "strictPeerDependencies": true,
-    "installFromBitDevRegistry": true,
     "savePrefix": ""
   },
   /**
@@ -63,11 +64,8 @@
    * new set of dependencies.
    **/
   "teambit.workspace/variants": {
-    "my-scope/components": {
-      "learn-harmony.env-customisations/typescript/my-team-env": {}
-    },
-    "my-scope/extensions": {
-      "teambit.envs/env": {}
+    "webpack/components": {
+      "learn-harmony.env-customisations/webpack/my-team-env": {}
     }
   }
 }
