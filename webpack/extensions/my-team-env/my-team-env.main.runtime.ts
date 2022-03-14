@@ -33,7 +33,8 @@ export class MyTeamEnvMain {
     const envTsTransform = myOrgEnv.useTypescript(tsModifiers);
     const myEnv = myOrgEnv.compose([
       envWebpackTransform,
-      envTsTransform
+      envTsTransform,
+      myOrgEnv.overrideJestConfig(require.resolve('./jest/jest.config.js'))
     ]);
     envs.registerEnv(myEnv);
     return new MyTeamEnvMain(myEnv);

@@ -37,6 +37,11 @@ export class MyOrgEnvMain {
   useTypescript = this.react.useTypescript.bind(this.react);
 
   /**
+   * Enable overriding of this env's jest config
+   */
+  overrideJestConfig = this.react.overrideJestConfig.bind(this.react);
+
+  /**
    * create a new composition of the MyOrgEnv environment.
    */
   compose(transformers: EnvTransformer[], targetEnv: Environment = {}) {
