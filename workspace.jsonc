@@ -26,7 +26,7 @@
     /**
      * default scope for all components in workspace.
      **/
-    "defaultScope": "learn-harmony.env-customisations"
+    "defaultScope": "learn-harmony.env-customisation"
   },
   /**
    * main configuration for component dependency resolution.
@@ -65,7 +65,7 @@
    **/
   "teambit.workspace/variants": {
     "webpack/components": {
-      "learn-harmony.env-customisations/webpack/my-team-env": {}
+      "learn-harmony.env-customisation/webpack/my-team-env": {}
     }
   }
 }
