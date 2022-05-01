@@ -1,6 +1,6 @@
 import { MainRuntime } from '@teambit/cli';
 import { UseWebpackModifiers, UseTypescriptModifiers } from "@teambit/react";
-import MyOrgEnvAspect, { MyOrgEnvMain } from "@learn-harmony/env-customisations.webpack.my-org-env";
+import MyOrgEnvAspect, { MyOrgEnvMain } from "@learn-harmony/env-customisation.webpack.my-org-env";
 import EnvsAspect, { Environment, EnvsMain } from "@teambit/envs";
 import { MyTeamEnvAspect } from "./my-team-env.aspect";
 import {
